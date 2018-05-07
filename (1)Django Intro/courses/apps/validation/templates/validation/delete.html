@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delete PAGE</title>
+</head>
+<body>
+	<h1> ARE YOU SURE TO PROCEED? </h1>
+	<p>name: {{name}}</p>
+	<p>description: {{description}}</p>
+	<form action="/course/destroy/{{id}}/delete" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="hidden" value="no">
+		<input type="submit" value="No">
+	</form>
+	<form action="/course/destroy/{{id}}/delete" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="hidden" value="delete">
+		<input type="submit" value="DELETE">
+	</form>
+</body>
+</html>

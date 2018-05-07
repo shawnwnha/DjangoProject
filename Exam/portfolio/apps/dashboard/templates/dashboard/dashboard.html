@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+</head>
+<body>
+	<h1>manage users</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Created_at</th>
+			<th>User_level</th>
+			{% if request.session.level == 9 %}
+				<th>Actions</th>
+			{% endif %}
+		</tr>
+		{% for user in users %}
+		<tr>
+			<td>{{user.id}}</td>
+			<td>{{user.first_name}} {{user.last_name}}</td>
+			<td>{{user.email}}</td>
+			<td>{{user.created_at}}</td>
+			{% if user.level == 9 %}
+				<td>admin</td>
+			{% endif %}
+			{% if user.level != 9 %}
+				<td>normal</td>
+			{% endif %}
+			{% if request.session.level == 9 %}
+				<td><a href="/edit/{{user.id}}">Edit</a>   /
+				<a href="/delete/{{user.id}}">Delete</a></td>
+			{% endif %}
+		</tr>	
+		{% endfor %}
+	</table>
+</body>
+</html>

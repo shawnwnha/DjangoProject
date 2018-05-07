@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Book Information Page</title>
+</head>
+<body>
+	<a href="/books"> Home </a><br>
+	<a href="/logout"> logout </a>
+	<h1>{{books.title}}</h1>
+	<p>{{books.author}}</p>
+	<div id = "reviews_wrapper">
+		<h3>Reviews</h3>
+		{% for review in reviews %}
+			<p>{{review.rating}}</p>
+			<a href="/users/{{review.reviewer.id}}">{{review.reviewer.name}}</a> - {{review.review}}
+			<p>{{review.created_at}}
+		{% endfor %}
+	</div>
+	<div id ="add_review">
+		<h3>Add a Review:</h3>
+		<form action ="/review" method="post">
+			{% csrf_token %}
+			<textarea name="review"></textarea>
+			<select name ="rating">
+				<option value="5">5</option>
+				<option value="4">4</option>
+				<option value="3">3</option>
+				<option value="2">2</option>
+				<option value="1">1</option>
+			</select>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+</html>

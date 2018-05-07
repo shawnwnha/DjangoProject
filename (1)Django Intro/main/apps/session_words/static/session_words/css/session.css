@@ -1,0 +1,24 @@
+#input{
+	width:300px;
+	height:300px;
+	border: 1px solid black;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#show{
+	width:500px;
+	height:800px;
+	display: inline-block;
+	border: 1px solid black;
+}
+
+#textarea{
+	display: inline-block;
+	vertical-align: top;
+	width:300px;
+}
+
+#timearea{
+	display: inline-block;
+}

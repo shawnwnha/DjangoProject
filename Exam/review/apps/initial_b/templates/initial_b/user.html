@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User page</title>
+</head>
+<body>
+	<a href="/books"> Home </a><br>
+	<a href="/books/add"> Add Book and Reviews </a>
+	<div id="user_wrapper">
+		<h3>USER ALIAS: {{user.alias}}</h3>
+		<h3>USER NAME: {{user.name}}</h3>
+		<h3>USER EMAIL: {{user.email}}</h3>
+		<h3>Total Reviews: {{count}}</h3>
+		<h1> Posted Reviews on the following books</h1>
+		{% for x in user_reviews %}
+			<a href="/books/{{x.reviewed_book.id}}">{{x.reviewed_book.title}}</a><br>
+		{% endfor %}
+	</div>
+</body>
+</html>

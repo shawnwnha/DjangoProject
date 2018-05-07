@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Book Page</title>
+</head>
+<body>
+	<h1>Welcome, {{request.session.name}}</h1>
+	<a href="/books/add"> Add Book and Reviews </a>
+	<br><a href="/logout"> logout </a>
+	<div id="recent_book">
+		<h1>Recent Book Reviews</h1>
+		{% for review in reviews1 %}
+			<div>
+				<a href="/books/{{review.reviewed_book.id}}">{{review.reviewed_book.title}}</a>
+				<p>{{review.rating}}</p>
+				<a href="/users/{{review.reviewer.id}}">{{review.reviewer.name}}</a>- {{review.review}} <br>
+				{{review.created_at}}
+			</div><br>		
+		{% endfor %}
+	</div>
+	<div id ="other_book">
+		<h1>Other Book Reviews</h1>
+		{% for review in reviews2 %}
+			<div>
+				<a href="/books/{{review.reviewed_book.id}}">{{review.reviewed_book.title}}</a>
+			</div>
+		{% endfor %}
+	</div>
+</body>
+</html>
+
+
+
+<!-- class User(models.Model):
+	name = models.CharField(max_length=255)
+	alias = models.CharField(max_length=255)
+	email = models.EmailField()
+	password = models.CharField(max_length=255)
+	created_at = models.DateTimeField(auto_now_add =True)
+	objects = UserManager()
+
+class Book(models.Model):
+	title = models.CharField(max_length=255)
+	author = models.CharField(max_length=255)
+
+class Review(models.Model):
+	review = models.TextField()
+	rating = models.IntegerField()
+	reviewer = models.ForeignKey(User, related_name = "user_reviews")
+	reviewed_book = models.ForeignKey(Book, related_name = "book_reviews")
+	created_at = models.DateTimeField(auto_now_add = True) -->

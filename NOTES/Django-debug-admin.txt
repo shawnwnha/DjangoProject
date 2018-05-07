@@ -1,0 +1,51 @@
+################################################################### DEBUG TOOL BAR 
+'debug_toolbar' to your `INSTALLED_APPS' = settings.py
+'debug_toolbar.middleware.DebugToolbarMiddleware' to MIDDLEWARE
+
+################################################################### ADMIN ROUTE
+
+  > django-admin startproject initialAdmin
+  > cd initialAdmin
+  > MIGRATE!
+  # Once we run migrate, we can create superuser
+  > python manage.py createsuperuser
+  # Follow prompts to fill in:
+  # Username
+  # Email address
+  # Password
+  # Password (again)
+  # Afterward you should see "Superuser created successfully."
+  > python manage.py runserver
+
+# From inside your project's urls.py file
+  from django.conf.urls import url, include
+  from django.contrib import admin
+  # THIS SECTION IS NEW!
+  # ********************
+  from apps.awesomeApp.models import User as U, Fruit, Donut, Group
+  class UAdmin(admin.ModelAdmin):
+      pass
+  admin.site.register(U, UAdmin)
+  class FruitAdmin(admin.ModelAdmin):
+      pass
+  admin.site.register(Fruit, FruitAdmin)
+  class DonutAdmin(admin.ModelAdmin):
+      pass
+  admin.site.register(Donut, DonutAdmin)
+  class GroupAdmin(admin.ModelAdmin):
+      pass
+  admin.site.register(Group, GroupAdmin)
+  # ****************
+  urlpatterns = [
+  # Your app's urls is lined to the project
+      url(r'^admin/',admin.site.urls),
+      url(r'^awesomeApp/', include('apps.awesomeApp.urls')),
+  ]
+#################################################################### REGULATE 
+
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/')
+def login_success(request):
+    return render(request,"ourApp/show.html")
+

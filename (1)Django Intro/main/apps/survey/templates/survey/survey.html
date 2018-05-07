@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Survey Page</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'survey/css/survey.css' %}" media="screen" title="no title" charset="utf-8">
+</head>	
+<body>
+	<div id ="wrapper">
+		<form action="/survey/result" method="post">
+			{% csrf_token %}
+			Your name:<input type="text" name="name"><br>
+			Dojo Location:
+			<select name ="location">
+				<option value= "la">Los Angeles</option>
+				<option value= "seattle">Seattle</option>
+				<option value= "ny">New York</option>
+				<option value= "chi">Chicago</option>
+			</select><br>
+			Favorite Language:
+			<select name ="language">
+				<option value= "python">Python</option>
+				<option value= "C#">C#</option>
+				<option value= "Mean">Mean</option>
+				<option value= "Java">Java</option>
+			</select><br>
+			Comment(optional):
+			<textarea placeholder="write description" name="comment"></textarea></br>
+			<input type ="submit" value ="register">
+		</form>
+	</div>
+</body>
+</html>

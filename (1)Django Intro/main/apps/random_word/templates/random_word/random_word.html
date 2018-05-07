@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Random_word Page</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'random_word/css/random_word.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+	<p>Random Word (attempt#{{trial}})</p>
+	<div id = "random"> {{random_word}} </div>
+	<form action="/random_word/random" method = "post">
+		{% csrf_token %}
+		<input type="submit" value="Generate">
+	</form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Successful Order!</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'Amadon/css/success.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+	<h1>Thank you for shopping with us!</h1>
+	<h5>We charged your credit card for ${{checkout_cost}}</h5>
+	<br>
+	<h5>You have ordered {{total_amount}} items so far and spent ${{total_cost}} with Amadon.com!</h5>
+</body>
+</html>

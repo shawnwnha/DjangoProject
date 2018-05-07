@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf">
+	<title>Ninja Gold</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'gold/css/gold.css'%}" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+	<div id = "top_score">
+		<div class ="number_text">Your Gold:</div> 
+		<div class="number_box">  {{request.session.score}}</div> 
+	</div>
+	<div id = "main">
+		<div id = "farm">
+			<h1>Farm</h1>
+			<h4>(earns 10-20 golds)</h4>
+			<form action="/process_money" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="hidden" value="farm">
+				<input type="submit" value="Find GOLD!">
+			</form>
+		</div>
+		<div id = "cave">
+			<h1>Cave</h1>
+			<h4>(earns 5-10 golds)</h4>
+			<form action="/process_money" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="hidden" value="cave">
+				<input type="submit" value="Find GOLD!">
+			</form>
+		</div>
+		<div id = "house">
+			<h1>House</h1>
+			<h4>(earns 2-5 golds)</h4>
+			<form action="/process_money" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="hidden" value="house">
+				<input type="submit" value="Find GOLD!">
+			</form>
+		</div>
+		<div id = "casino">
+			<h1>Casino</h1>
+			<h4>(earns 0-50 golds)</h4>
+			<form action="/process_money" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="hidden" value="casino">
+				<input type="submit" value="Find GOLD!">
+			</form>
+		</div>
+	</div>
+	<h2>Activities: </h2>
+	<div id = "bottom">
+		<div id ="score_log">
+			{% for log in request.session.log %}
+				{% if log.score < 0 %}
+					<p style="color: red;">Ouch! Entered Casino and lost {{log.score}} golds... </p>
+				{% endif %}
+				{% if log.score >= 0 %}
+					<p>Earned {{log.score}} golds from the {{log.location}}! ({{log.time}})</p>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

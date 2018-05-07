@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Comment Page</title>
+</head>
+<body>
+	<div>
+		<P> {{user.first_name}} {{user.last_name}}</P>
+		<p> Since: {{user.created_at}}<p>
+		<p> Email: {{user.email}}</p>
+		<p> Desc: BLALALALA </p>
+	</div>
+</body>
+	<div>
+		{% for m in messages %}
+			<p>{{m.content}}</p>
+			{% for c in comments %}
+				{% if c.message == m %}
+					<p>COMMENT: {{c.content}}</p>
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+	</div>
+</html>
+
+
+<!-- def show(request,id):
+	user = Users.objects.get(id =id)
+	board = Boards.objects.get(user = user)
+	messages = Messages.objects.filter(board = board)
+
+	context = {
+		'user' : user,
+		'messages' : messages
+	}
+
+	return render(request,'dashboard/userinfo.html',context) -->
+<!-- ################################################################  -->
+<!-- class Users(models.Model):
+	first_name = models.CharField(max_length=255)
+	last_name = models.CharField(max_length=255)
+	email = models.EmailField()
+	password = models.CharField(max_length=255)
+	level = models.IntegerField()
+	created_at = models.DateTimeField(auto_now_add =True)
+	objects = UsersManager()
+
+class Boards(models.Model):
+	user = models.OneToOneField(Users,related_name="users_board")
+
+class Messages(models.Model):
+	content = models.CharField(max_length=255)
+	created_at = models.DateTimeField(auto_now_add =True)
+	user = models.ForeignKey(Users, related_name = "users_messages")
+	board = models.ForeignKey(Boards, related_name = "boards_messages")
+
+class Comments(models.Model):
+	content = models.CharField(max_length=255)
+	created_at = models.DateTimeField(auto_now_add =True)
+	message = models.ForeignKey(Messages, related_name ="messages_comments")
+	user = models.ForeignKey(Users, related_name="users_comments")
+	board = models.ForeignKey(Boards, related_name="boards_comments")
+ -->
